@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1048671489455",
+    "firebase_url": "https://stockmarkectprediction.firebaseio.com",
+    "project_id": "stockmarkectprediction",
+    "storage_bucket": "stockmarkectprediction.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048671489455:android:1a51037b98a0a9a6a0f35a",
+        "android_client_info": {
+          "package_name": "com.example.admin_login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1048671489455-to83ajg7soq9peflf8oqsrd6jgkuq115.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIWwZWpxzqQFbG7dg-VkrYP7Nxkr8DT1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1048671489455-to83ajg7soq9peflf8oqsrd6jgkuq115.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

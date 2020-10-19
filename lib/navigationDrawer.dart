@@ -35,7 +35,7 @@ class NavigationDrawer extends StatelessWidget {
            icon: Icons.notifications_active,
            text: 'Services',
            onTap: () =>
-               Navigator.pushReplacementNamed(context, PageRoutes.todo),
+               Navigator.pushReplacementNamed(context, PageRoutes.auto),
          ),
          createDrawerBodyItem(
            icon: Icons.info,

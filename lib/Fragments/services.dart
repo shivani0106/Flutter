@@ -1,80 +1,81 @@
 import 'package:flutter/material.dart';
 import 'package:admin_login/navigationDrawer.dart';
-import 'package:csv/csv.dart';
-import 'package:flutter/services.dart';
+import 'package:admin_login/routes/pageRoute.dart';
 
-class ServicePage extends StatelessWidget {
+class ServicePage extends StatefulWidget {
   static const String routeName = '/servicepage';
+  ServiceState createState() => ServiceState();
+}
 
+class ServiceState extends State<ServicePage> {
+  var list = ["Home", "Overview", "news"];
+  PageController controller = PageController();
   @override
   Widget build(BuildContext context) {
+
     return new Scaffold(
-      appBar: AppBar(
-        title: Text("Services"),
-      ),
-      drawer: NavigationDrawer(),
-      body:TableLayout()
-    );
-  }
-}
-
-class TableLayout extends StatefulWidget {
-  @override
-  _TableLayoutState createState() => _TableLayoutState();
-}
-
-class _TableLayoutState extends State<TableLayout> {
-  List<List<dynamic>> data = [];
-  loadAsset() async {
-    final myData = await rootBundle.loadString("assets/res/stock1.csv");
-    List<List<dynamic>> csvTable = CsvToListConverter().convert(myData);
-    print(csvTable);
-    data = csvTable;
-    setState(() {
-
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.refresh),
-          onPressed: () async {
-            await loadAsset();
-            //print(data);
-          }),
-      appBar: AppBar(
-        title: Text("Table Layout and CSV"),
-      ),
-
-      body: SingleChildScrollView(
-        //scrollDirection: Axis.horizontal,
-        child: Table(
-          columnWidths: {
-            //0: FixedColumnWidth(2),
-           // 1: FixedColumnWidth(4),
-           2: FlexColumnWidth(2),
-          },
-          border: TableBorder.all(width: 1.0),
-          children: data.map((item) {
-            return TableRow(
-                children: item.map((row) {
-                  return Container(
-                    height: 25,
-                    child: Padding(
-                      padding: const EdgeInsets.all(0),
-                      child: Text(
-                        row.toString(),
-                        style: TextStyle(fontSize: 18.0),
-                      ),
-                    ),
-                  );
-                }).toList());
-          }).toList(),
+        appBar: AppBar(
+          title: Text("Services"),
         ),
-      ),
-    );
+        drawer: NavigationDrawer(),
+        body: SingleChildScrollView(
+            child: new Container(
+                constraints: BoxConstraints(minWidth: 400.0, minHeight: 800.0),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/images/services_bg.jpg"),
+                        fit: BoxFit.cover)),
+                child: SafeArea(
+                  child:
+                      Column(mainAxisSize: MainAxisSize.max, children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Row(
+                          children: List.generate(2, (index) {
+                            return GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                margin: EdgeInsets.all(8),
+                                child: Text(list[index + 1]),
+                              ),
+                            );
+                          }),
+                        )
+                      ],
+                    ),
+                    Row(children: <Widget>[
+                      Container(
+                        margin: const EdgeInsets.fromLTRB(100, 50, 00, 20),
+                        child: RaisedButton(
+                          child: Text("NIFTY"),
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(
+                                context, PageRoutes.nefty);
+                          },
+                          color: Colors.blueGrey[300],
+                          textColor: Colors.white,
+                          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                          splashColor: Colors.grey,
+                          highlightColor: Colors.black,
+                        ),
+                      ),
+                      Spacer(),
+                      Container(
+                          margin: const EdgeInsets.fromLTRB(00, 50, 80, 20),
+                          child: RaisedButton(
+                            child: Text("SENSEX"),
+                            onPressed:(){
+                               Navigator.pushReplacementNamed(
+                                context, PageRoutes.sensex);
+                            },
+                            color: Colors.blueGrey[300],
+                            textColor: Colors.white,
+                            padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                            splashColor: Colors.grey,
+                            highlightColor: Colors.black,
+                          ))
+                    ]),
+                  ]),
+                ))));
   }
 }
